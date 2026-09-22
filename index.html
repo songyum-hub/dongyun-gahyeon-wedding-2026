@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>송동윤 · 현가현 결혼합니다</title>
+<meta property="og:title" content="송동윤 · 현가현 결혼합니다">
+<meta property="og:description" content="2026년 12월 12일 토요일 낮 12시 아젠토피오레 컨벤션 2층">
+<meta property="og:image" content="">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;700&family=Gowun+Batang&display=swap" rel="stylesheet">
+
+<!--
+============================================================
+  이 파일 하나로 청첩장 전체가 동작합니다. 빌드 과정이 없습니다.
+  GitHub에서 이 파일을 열고 바로 수정 → 커밋하면 그대로 반영됩니다.
+
+  수정은 딱 두 군데만 건드리면 됩니다.
+  1) 아래 <style> 안의 색상 변수 (:root)
+  2) 이 파일 맨 아래 <script> 안의 CONFIG 객체
+  그 아래 로직 코드는 안 건드리셔도 됩니다.
+============================================================
+-->
+
+<style>
+  :root{
+    --ink:#2b2622;
+    --paper:#f7f3ec;
+    --paper-soft:#efe9dd;
+    --wine:#7a3b3e;
+    --wine-deep:#5c2c2e;
+    --gold:#b08d57;
+    --line:rgba(43,38,34,0.14);
+    --white:#fffdf9;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Noto Serif KR',serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  body{max-width:480px;margin:0 auto;position:relative;}
+  img{max-width:100%;display:block;}
+  section{padding:88px 32px;position:relative;}
+  .divider{
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    padding:0 0 0 0;opacity:0.55;
+  }
+  .divider span{width:34px;height:1px;background:var(--ink);}
+  .eyebrow{
+    font-size:11px;letter-spacing:0.35em;color:var(--gold);
+    font-family:'Noto Serif KR',serif;font-weight:500;margin-bottom:14px;
+  }
+  h2{font-size:22px;font-weight:500;line-height:1.5;margin-bottom:28px;}
+  p{font-size:14px;line-height:1.9;color:#5a5148;}
+  .center{text-align:center;}
+
+  /* ---------- Hero ---------- */
+  #hero{
+    height:100svh;min-height:640px;padding:0;
+    display:flex;flex-direction:column;justify-content:flex-end;align-items:center;
+    position:relative;overflow:hidden;color:var(--white);text-align:center;
+  }
+  #hero .bg{
+    position:absolute;inset:0;background:linear-gradient(160deg,#4a3630,#7a3b3e 55%,#3c2a26);
+  }
+  #hero .bg.has-image{background-size:cover;background-position:center;}
+  #hero .bg::after{content:"";position:absolute;inset:0;background:rgba(20,14,12,0.28);}
+  #hero .content{position:relative;z-index:2;padding:0 32px 64px;}
+  #hero .eyebrow{color:rgba(255,255,255,0.75);}
+  #hero h1{font-size:34px;font-weight:500;letter-spacing:0.02em;margin:8px 0 22px;}
+  #hero h1 .ring{font-size:16px;opacity:0.8;margin:0 8px;vertical-align:middle;}
+  #hero .date{font-size:16px;letter-spacing:0.08em;margin-bottom:6px;}
+  #hero .venue{font-size:13px;opacity:0.8;font-family:'Gowun Batang',serif;}
+
+  /* ---------- Greeting ---------- */
+  #greeting p{white-space:pre-line;font-size:14px;line-height:2;}
+  #greeting .names{margin-top:34px;padding-top:26px;border-top:1px solid var(--line);}
+  #greeting .names p{font-size:15px;color:var(--ink);font-family:'Gowun Batang',serif;}
+  #greeting .names b{font-weight:700;}
+  #greeting .contact-btn{
+    margin:30px auto 0;display:flex;align-items:center;justify-content:center;gap:8px;
+    width:fit-content;padding:12px 28px;border:1px solid var(--line);border-radius:999px;
+    font-size:13px;background:none;color:var(--ink);cursor:pointer;font-family:'Noto Serif KR',serif;
+  }
+
+  /* ---------- Save the date ---------- */
+  #savedate{background:var(--paper-soft);}
+  #savedate .cal-head{font-size:26px;margin-bottom:4px;}
+  #savedate .cal-head b{font-weight:700;}
+  #savedate .cal-year{font-size:12px;letter-spacing:0.2em;color:#8a8073;margin-bottom:26px;}
+  table.cal{width:100%;border-collapse:collapse;margin:20px 0 30px;}
+  table.cal th{font-size:11px;color:#a89c8a;font-weight:500;padding-bottom:14px;}
+  table.cal td{text-align:center;font-size:13px;padding:7px 0;color:var(--ink);}
+  table.cal td.pick{position:relative;}
+  table.cal td.pick span{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:30px;height:30px;border-radius:50%;background:var(--wine);color:var(--white);font-weight:500;
+  }
+  .countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px;}
+  .countdown .box{background:var(--white);border:1px solid var(--line);border-radius:10px;padding:14px 0;}
+  .countdown .box b{display:block;font-size:22px;font-weight:500;}
+  .countdown .box span{font-size:10px;letter-spacing:0.1em;color:#a89c8a;}
+  .dday{margin-top:22px;font-size:13px;color:#5a5148;font-family:'Gowun Batang',serif;}
+  .dday b{color:var(--wine);}
+
+  /* ---------- RSVP ---------- */
+  #rsvp form{display:flex;flex-direction:column;gap:14px;margin-top:24px;}
+  #rsvp label{font-size:12px;color:#8a8073;display:block;margin-bottom:6px;}
+  #rsvp input,#rsvp select{
+    width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:8px;
+    background:var(--white);font-family:'Noto Serif KR',serif;font-size:14px;color:var(--ink);
+  }
+  .seg{display:flex;gap:8px;}
+  .seg button{
+    flex:1;padding:11px 0;border:1px solid var(--line);border-radius:8px;background:var(--white);
+    font-size:13px;font-family:'Noto Serif KR',serif;color:#8a8073;cursor:pointer;
+  }
+  .seg button.on{background:var(--wine);color:var(--white);border-color:var(--wine);}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  #rsvp .submit{
+    margin-top:8px;padding:14px 0;border:none;border-radius:8px;background:var(--ink);color:var(--white);
+    font-size:14px;font-family:'Noto Serif KR',serif;cursor:pointer;
+  }
+  .rsvp-msg{font-size:12px;color:var(--wine);margin-top:8px;min-height:16px;}
+
+  /* ---------- Gallery ---------- */
+  #gallery{background:var(--paper-soft);padding-left:0;padding-right:0;}
+  #gallery .head{padding:0 32px;}
+  .gallery-scroll{display:flex;overflow-x:auto;gap:10px;padding:24px 32px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;}
+  .gallery-scroll::-webkit-scrollbar{display:none;}
+  .g-item{
+    flex:0 0 auto;width:220px;height:290px;border-radius:6px;scroll-snap-align:start;
+    display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.6);
+    font-size:12px;background-size:cover;background-position:center;overflow:hidden;
+  }
+
+  /* ---------- Location ---------- */
+  #location .venue-name{font-size:17px;font-family:'Gowun Batang',serif;margin-bottom:6px;}
+  #location .venue-addr{font-size:13px;color:#8a8073;display:flex;align-items:center;justify-content:center;gap:6px;}
+  #location .venue-addr button{border:none;background:none;color:#8a8073;cursor:pointer;font-size:13px;text-decoration:underline;}
+  #map{width:100%;height:260px;border-radius:10px;margin:26px 0 14px;background:var(--paper-soft);}
+  .nav-buttons{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+  .nav-buttons a{
+    display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 0;
+    border:1px solid var(--line);border-radius:10px;background:var(--white);
+    text-decoration:none;color:var(--ink);font-size:11px;
+  }
+  .nav-buttons .dot{width:26px;height:26px;border-radius:50%;background:var(--paper-soft);}
+
+  /* ---------- Gift ---------- */
+  #gift .tabs{display:flex;gap:8px;background:var(--paper-soft);padding:6px;border-radius:999px;margin-bottom:22px;}
+  #gift .tabs button{
+    flex:1;padding:11px 0;border:none;border-radius:999px;background:none;font-size:13px;
+    font-family:'Noto Serif KR',serif;color:#8a8073;cursor:pointer;
+  }
+  #gift .tabs button.on{background:var(--white);color:var(--ink);}
+  .acct-card{
+    background:var(--white);border:1px solid var(--line);border-radius:14px;padding:20px;
+    margin-bottom:12px;
+  }
+  .acct-card .who{font-size:13px;color:#8a8073;margin-bottom:10px;}
+  .acct-card .line{display:flex;align-items:center;justify-content:space-between;font-size:13px;}
+  .acct-card .num{font-family:monospace;letter-spacing:0.02em;}
+  .acct-card .copy{border:none;background:var(--paper-soft);border-radius:6px;padding:8px 12px;font-size:12px;cursor:pointer;color:var(--ink);margin-top:12px;width:100%;}
+
+  /* ---------- Guestbook ---------- */
+  #guestbook form{display:flex;flex-direction:column;gap:10px;margin-top:22px;}
+  #guestbook textarea{
+    width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:8px;min-height:80px;
+    font-family:'Noto Serif KR',serif;font-size:14px;resize:vertical;background:var(--white);
+  }
+  .gb-list{margin-top:28px;display:flex;flex-direction:column;gap:12px;}
+  .gb-item{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:16px;}
+  .gb-item .name{font-size:13px;font-weight:500;margin-bottom:4px;}
+  .gb-item .msg{font-size:13px;color:#5a5148;line-height:1.7;white-space:pre-line;}
+  .gb-item .date{font-size:10px;color:#a89c8a;margin-top:8px;}
+
+  /* ---------- Footer ---------- */
+  #footer{text-align:center;padding:60px 32px 80px;color:#a89c8a;}
+  #footer .names{font-family:'Gowun Batang',serif;font-size:15px;color:var(--ink);margin-bottom:8px;}
+  #footer .date{font-size:12px;margin-bottom:24px;}
+  #footer .credit{font-size:10px;letter-spacing:0.05em;}
+
+  .toast{
+    position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
+    background:rgba(20,14,12,0.85);color:#fff;padding:10px 18px;border-radius:999px;
+    font-size:12px;opacity:0;pointer-events:none;transition:opacity 0.25s;z-index:999;
+  }
+  .toast.show{opacity:1;}
+</style>
+</head>
+<body>
+
+<section id="hero">
+  <div class="bg" id="hero-bg"></div>
+  <div class="content">
+    <p class="eyebrow">WEDDING INVITATION</p>
+    <h1 id="hero-names"></h1>
+    <p class="date" id="hero-date"></p>
+    <p class="venue" id="hero-venue"></p>
+  </div>
+</section>
+
+<section id="greeting">
+  <p class="eyebrow center">INVITATION</p>
+  <h2 class="center" id="greeting-opening"></h2>
+  <p id="greeting-main"></p>
+  <div class="names center" id="greeting-names"></div>
+  <button class="contact-btn" onclick="openContactModal()">연락하기</button>
+</section>
+
+<section id="savedate">
+  <p class="eyebrow center">SAVE THE DATE</p>
+  <div class="center">
+    <p class="cal-head" id="cal-month"></p>
+    <p class="cal-year" id="cal-year"></p>
+  </div>
+  <table class="cal" id="cal-table"></table>
+  <div class="countdown" id="countdown">
+    <div class="box"><b id="cd-d">0</b><span>DAYS</span></div>
+    <div class="box"><b id="cd-h">0</b><span>HOUR</span></div>
+    <div class="box"><b id="cd-m">0</b><span>MIN</span></div>
+    <div class="box"><b id="cd-s">0</b><span>SEC</span></div>
+  </div>
+  <p class="dday center" id="dday-text"></p>
+</section>
+
+<section id="rsvp">
+  <p class="eyebrow center">RSVP</p>
+  <h2 class="center">참석 의사 전달하기</h2>
+  <p class="center">한 분 한 분을 소중히 모실 수 있도록<br>참석 의사를 전해주시면 감사하겠습니다.</p>
+  <form id="rsvp-form" onsubmit="submitRsvp(event)">
+    <div>
+      <label>어느 분의 하객이신가요?</label>
+      <div class="seg" id="rsvp-side">
+        <button type="button" data-val="신랑" onclick="pickSeg(this,'side')">신랑측</button>
+        <button type="button" data-val="신부" onclick="pickSeg(this,'side')">신부측</button>
+      </div>
+    </div>
+    <div>
+      <label>참석하실 수 있나요?</label>
+      <div class="seg" id="rsvp-attend">
+        <button type="button" data-val="참석" onclick="pickSeg(this,'attend')">참석할게요</button>
+        <button type="button" data-val="불참" onclick="pickSeg(this,'attend')">참석이 어려워요</button>
+      </div>
+    </div>
+    <div class="row2">
+      <div><label>성함</label><input type="text" id="rsvp-name" placeholder="참석자 본인 성함"></div>
+      <div><label>연락처 뒤 4자리</label><input type="text" id="rsvp-phone" maxlength="4" placeholder="0000"></div>
+    </div>
+    <div class="row2">
+      <div><label>성인 인원</label><input type="number" id="rsvp-adult" min="0" value="1"></div>
+      <div><label>미취학아동</label><input type="number" id="rsvp-child" min="0" value="0"></div>
+    </div>
+    <button type="submit" class="submit">체크 완료하기</button>
+    <p class="rsvp-msg" id="rsvp-msg"></p>
+  </form>
+</section>
+
+<section id="gallery">
+  <div class="head">
+    <p class="eyebrow center">GALLERY</p>
+    <h2 class="center">소중한 순간들</h2>
+  </div>
+  <div class="gallery-scroll" id="gallery-scroll"></div>
+</section>
+
+<section id="location">
+  <p class="eyebrow center">LOCATION</p>
+  <h2 class="center">오시는 길</h2>
+  <p class="venue-name" id="loc-name"></p>
+  <div class="venue-addr">
+    <span id="loc-addr"></span>
+    <button onclick="copyAddress()">복사</button>
+  </div>
+  <div id="map"></div>
+  <div class="nav-buttons">
+    <a id="btn-naver" href="#" target="_blank"><div class="dot"></div>네이버지도</a>
+    <a id="btn-tmap" href="#"><div class="dot"></div>티맵</a>
+    <a id="btn-kakao" href="#" target="_blank"><div class="dot"></div>카카오맵</a>
+  </div>
+</section>
+
+<section id="gift">
+  <p class="eyebrow center">ACCOUNT</p>
+  <h2 class="center">마음 전하실 곳</h2>
+  <p class="center">참석이 어려우신 분들을 위해<br>계좌번호를 기재하였습니다.</p>
+  <div class="tabs">
+    <button class="on" data-side="groom" onclick="pickGiftTab(this)">신랑측</button>
+    <button data-side="bride" onclick="pickGiftTab(this)">신부측</button>
+  </div>
+  <div id="gift-list"></div>
+</section>
+
+<section id="guestbook">
+  <p class="eyebrow center">MESSAGE</p>
+  <h2 class="center">축하의 한마디</h2>
+  <form id="gb-form" onsubmit="submitGuestbook(event)">
+    <div class="row2">
+      <input type="text" id="gb-name" placeholder="성함">
+      <input type="text" id="gb-pw" maxlength="4" placeholder="비밀번호 4자리">
+    </div>
+    <textarea id="gb-msg" placeholder="축하 메시지를 남겨주세요"></textarea>
+    <button type="submit" class="submit">작성 완료</button>
+    <p class="rsvp-msg" id="gb-status"></p>
+  </form>
+  <div class="gb-list" id="gb-list"></div>
+</section>
+
+<section id="footer">
+  <p class="names" id="footer-names"></p>
+  <p class="date" id="footer-date"></p>
+  <p class="credit">Wedding Invitation</p>
+</section>
+
+<div class="toast" id="toast"></div>
+
+<!-- Firebase (Firestore) -->
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+
+<script>
+/* ============================================================
+   여기서부터가 실제로 수정하실 부분입니다.
+   이름, 날짜, 예식장, 사진, 계좌, API 키를 여기서 바꾸세요.
+   ============================================================ */
+const CONFIG = {
+
+  groom: { name: '송동윤' },
+  bride: { name: '현가현' },
+
+  wedding: {
+    // ISO 형식 유지, 시간대는 +09:00(한국)
+    dateISO: '2026-12-12T12:00:00+09:00',
+    dateText: '2026. 12. 12. 토요일 낮 12시',
+    // 감사/카운트다운 계산 기준. 결혼식이 끝나는 시각을 넣으세요.
+    dateEndISO: '2026-12-12T15:00:00+09:00'
+  },
+
+  venue: {
+    name: '아젠토피오레 컨벤션',
+    hall: '2층',
+    address: '제주특별자치도 제주시 서광로 112',
+    tel: '0507-1408-8393',
+    lat: 33.4996506,
+    lng: 126.5083329
+  },
+
+  greeting: {
+    opening: '', // 나중에 채우실 예정
+    main: `여기에 인사말을 적어주세요.
+
+두 분만의 이야기를 담아 자유롭게 작성하시면 됩니다.
+줄바꿈은 그대로 반영됩니다.`,
+    closing: ''
+  },
+
+  // 양가 부모님 — 지금은 더미 값입니다. 실제 정보로 교체하세요.
+  parents: {
+    groom: {
+      father: { name: '아버지', phone: '010-0000-0000' },
+      mother: { name: '어머니', phone: '010-0000-0000' }
+    },
+    bride: {
+      father: { name: '아버지', phone: '010-0000-0000' },
+      mother: { name: '어머니', phone: '010-0000-0000' }
+    }
+  },
+
+  // 계좌 — 더미 값입니다. bank/name/num을 실제 값으로 바꾸세요.
+  accounts: {
+    groom: [
+      { who: '아버지', bank: 'OO은행', name: '아버지', num: '000-000-000000' },
+      { who: '어머니', bank: 'OO은행', name: '어머니', num: '000-000-000000' },
+      { who: '신랑',   bank: 'OO은행', name: '송동윤', num: '000-000-000000' }
+    ],
+    bride: [
+      { who: '아버지', bank: 'OO은행', name: '아버지', num: '000-000-000000' },
+      { who: '어머니', bank: 'OO은행', name: '어머니', num: '000-000-000000' },
+      { who: '신부',   bank: 'OO은행', name: '현가현', num: '000-000-000000' }
+    ]
+  },
+
+  /*
+    이미지 설정.
+    지금은 전부 null(단색 배경)로 되어 있습니다.
+    구글 드라이브로 사진을 넣으실 땐:
+      1. 드라이브에 사진 업로드 → 우클릭 → 공유 → "링크가 있는 모든 사용자"로 설정
+      2. 링크 주소 중간의 파일 ID만 복사
+         (예: https://drive.google.com/file/d/여기가ID/view 에서 '여기가ID' 부분)
+      3. 아래처럼 driveImg('파일ID') 형태로 넣으면 됩니다.
+  */
+  images: {
+    hero: null,           // driveImg('파일ID')
+    gallery: [null, null, null, null, null, null], // 갤러리, 원하는 만큼 추가/삭제 가능
+  },
+
+  // API 키 — 이전에 발급받은 값을 그대로 사용
+  keys: {
+    naverClientId: '4mj4xarz85',
+    kakaoJsKey: '4745c5753a3e665c1cad29323a38f44a',
+    tmapAppKey: 'Qido5XsWDk6AjxKlTlwGvaBr1jy99xS91eimCPTi',
+    firebase: {
+      apiKey: 'AIzaSyA8X6Gg6pTaMytEkA-K2vcaqAM4Clt0v6Q',
+      authDomain: 'dongyun-gahyeon-wedding.firebaseapp.com',
+      projectId: 'dongyun-gahyeon-wedding',
+      storageBucket: 'dongyun-gahyeon-wedding.firebasestorage.app',
+      messagingSenderId: '876264015545',
+      appId: '1:876264015545:web:37b921d9dcc40a8db3fd68'
+    }
+  }
+};
+
+function driveImg(fileId){
+  return `https://lh3.googleusercontent.com/d/${fileId}`;
+}
+
+/* ============================================================
+   이 아래부터는 로직 코드입니다. 잘 모르시면 건드리지 마세요.
+   ============================================================ */
+
+// ---------- 초기 렌더 ----------
+document.getElementById('hero-names').innerHTML =
+  `${CONFIG.groom.name} <span class="ring">💍</span> ${CONFIG.bride.name}`;
+document.getElementById('hero-date').textContent = CONFIG.wedding.dateText;
+document.getElementById('hero-venue').textContent = `${CONFIG.venue.name}, ${CONFIG.venue.hall}`;
+if(CONFIG.images.hero){
+  const bg = document.getElementById('hero-bg');
+  bg.classList.add('has-image');
+  bg.style.backgroundImage = `linear-gradient(rgba(20,14,12,0.35),rgba(20,14,12,0.45)), url(${CONFIG.images.hero})`;
+}
+
+document.getElementById('greeting-opening').textContent = CONFIG.greeting.opening || '소중한 분들을 초대합니다';
+document.getElementById('greeting-main').textContent = CONFIG.greeting.main;
+document.getElementById('greeting-names').innerHTML = `
+  <p>${CONFIG.parents.groom.father.name} · ${CONFIG.parents.groom.mother.name}의 아들 <b>${CONFIG.groom.name}</b></p>
+  <p style="margin-top:8px;">${CONFIG.parents.bride.father.name} · ${CONFIG.parents.bride.mother.name}의 딸 <b>${CONFIG.bride.name}</b></p>
+`;
+
+document.getElementById('loc-name').textContent = CONFIG.venue.name;
+document.getElementById('loc-addr').textContent = CONFIG.venue.address;
+document.getElementById('footer-names').textContent = `${CONFIG.groom.name} · ${CONFIG.bride.name}`;
+document.getElementById('footer-date').textContent = CONFIG.wedding.dateText;
+
+// ---------- Save the date ----------
+(function renderCalendar(){
+  const d = new Date(CONFIG.wedding.dateISO);
+  const y = d.getFullYear(), m = d.getMonth(), day = d.getDate();
+  document.getElementById('cal-month').innerHTML = `<b>${m+1}</b>월`;
+  document.getElementById('cal-year').textContent = y;
+
+  const first = new Date(y,m,1).getDay();
+  const days = new Date(y,m+1,0).getDate();
+  let html = '<thead><tr>' + ['S','M','T','W','T','F','S'].map(w=>`<th>${w}</th>`).join('') + '</tr></thead><tbody><tr>';
+  for(let i=0;i<first;i++) html += '<td></td>';
+  for(let d2=1; d2<=days; d2++){
+    if((first+d2-1)%7===0 && d2!==1) html += '</tr><tr>';
+    html += d2===day ? `<td class="pick"><span>${d2}</span></td>` : `<td>${d2}</td>`;
+  }
+  html += '</tr></tbody>';
+  document.getElementById('cal-table').innerHTML = html;
+})();
+
+function tick(){
+  const now = new Date().getTime();
+  const target = new Date(CONFIG.wedding.dateISO).getTime();
+  const diff = target - now;
+  const dayCount = Math.max(0, Math.ceil(diff/(1000*60*60*24)));
+  document.getElementById('dday-text').innerHTML =
+    diff > 0
+      ? `${CONFIG.groom.name} ♥ ${CONFIG.bride.name}의 결혼식이 <b>D-${dayCount}</b> 남았습니다`
+      : `${CONFIG.groom.name} ♥ ${CONFIG.bride.name}, 결혼했습니다`;
+  const d = Math.max(0, Math.floor(diff/(1000*60*60*24)));
+  const h = Math.max(0, Math.floor((diff/(1000*60*60))%24));
+  const mi = Math.max(0, Math.floor((diff/(1000*60))%60));
+  const s = Math.max(0, Math.floor((diff/1000)%60));
+  document.getElementById('cd-d').textContent = d;
+  document.getElementById('cd-h').textContent = h;
+  document.getElementById('cd-m').textContent = mi;
+  document.getElementById('cd-s').textContent = s;
+}
+tick(); setInterval(tick,1000);
+
+// ---------- Gallery ----------
+(function renderGallery(){
+  const wrap = document.getElementById('gallery-scroll');
+  CONFIG.images.gallery.forEach((url,i)=>{
+    const div = document.createElement('div');
+    div.className = 'g-item';
+    if(url){
+      div.style.backgroundImage = `url(${url})`;
+    } else {
+      const tones = ['#7a3b3e','#5c2c2e','#b08d57','#8a8073','#3c2a26','#9c7c58'];
+      div.style.background = tones[i % tones.length];
+      div.textContent = `사진 ${i+1}`;
+    }
+    wrap.appendChild(div);
+  });
+})();
+
+// ---------- Gift ----------
+function renderGift(side){
+  const list = document.getElementById('gift-list');
+  list.innerHTML = '';
+  CONFIG.accounts[side].forEach(acc=>{
+    const card = document.createElement('div');
+    card.className = 'acct-card';
+    card.innerHTML = `
+      <div class="who">${acc.who} · ${acc.name}</div>
+      <div class="line"><span>${acc.bank}</span><span class="num">${acc.num}</span></div>
+      <button class="copy" onclick="copyText('${acc.num}','계좌번호가 복사되었습니다')">복사하기</button>
+    `;
+    list.appendChild(card);
+  });
+}
+function pickGiftTab(btn){
+  document.querySelectorAll('#gift .tabs button').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  renderGift(btn.dataset.side);
+}
+renderGift('groom');
+
+// ---------- Toast / copy ----------
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 1800);
+}
+function copyText(text,msg){
+  navigator.clipboard.writeText(text).then(()=>showToast(msg)).catch(()=>showToast('복사에 실패했습니다'));
+}
+function copyAddress(){ copyText(CONFIG.venue.address,'주소가 복사되었습니다'); }
+
+// ---------- Contact modal (simple alert-style, no extra markup needed) ----------
+function openContactModal(){
+  const g = CONFIG.parents.groom, b = CONFIG.parents.bride;
+  alert(
+`신랑측
+신랑 ${CONFIG.groom.name} ${''}
+신랑 아버지 ${g.father.name} ${g.father.phone}
+신랑 어머니 ${g.mother.name} ${g.mother.phone}
+
+신부측
+신부 ${CONFIG.bride.name}
+신부 아버지 ${b.father.name} ${b.father.phone}
+신부 어머니 ${b.mother.name} ${b.mother.phone}`
+  );
+}
+
+// ---------- Location: Naver map + nav buttons ----------
+const venueQuery = encodeURIComponent(CONFIG.venue.name);
+document.getElementById('btn-naver').href = `https://map.naver.com/p/search/${venueQuery}`;
+document.getElementById('btn-kakao').href = `https://map.kakao.com/link/map/${venueQuery},${CONFIG.venue.lat},${CONFIG.venue.lng}`;
+document.getElementById('btn-tmap').addEventListener('click', function(e){
+  e.preventDefault();
+  const dest = { name: CONFIG.venue.name, lat: CONFIG.venue.lat, lon: CONFIG.venue.lng };
+  function go(startLat,startLon){
+    const appUrl = `tmap://route?goalname=${venueQuery}&goaly=${dest.lat}&goalx=${dest.lon}` + (startLat?`&starty=${startLat}&startx=${startLon}`:'');
+    window.location.href = appUrl;
+  }
+  if(navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(
+      pos => go(pos.coords.latitude, pos.coords.longitude),
+      () => go(null,null)
+    );
+  } else { go(null,null); }
+});
+
+(function loadNaverMap(){
+  const s = document.createElement('script');
+  s.src = `https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${CONFIG.keys.naverClientId}`;
+  s.onload = function(){
+    if(!window.naver) return;
+    const loc = new naver.maps.LatLng(CONFIG.venue.lat, CONFIG.venue.lng);
+    const map = new naver.maps.Map('map', { center: loc, zoom: 17, scrollWheel:false, draggable:false });
+    new naver.maps.Marker({ position: loc, map: map, title: CONFIG.venue.name });
+  };
+  document.head.appendChild(s);
+})();
+
+// ---------- RSVP form state ----------
+const rsvpState = { side:'', attend:'' };
+function pickSeg(btn, key){
+  const group = btn.parentElement;
+  group.querySelectorAll('button').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  rsvpState[key] = btn.dataset.val;
+}
+
+// ---------- Firebase init ----------
+firebase.initializeApp(CONFIG.keys.firebase);
+const db = firebase.firestore();
+
+async function submitRsvp(e){
+  e.preventDefault();
+  const msgEl = document.getElementById('rsvp-msg');
+  const name = document.getElementById('rsvp-name').value.trim();
+  const phone = document.getElementById('rsvp-phone').value.trim();
+  const adult = parseInt(document.getElementById('rsvp-adult').value || '0',10);
+  const child = parseInt(document.getElementById('rsvp-child').value || '0',10);
+
+  if(!rsvpState.side || !rsvpState.attend || !name || phone.length!==4){
+    msgEl.textContent = '모든 항목을 입력해주세요.';
+    return;
+  }
+  try{
+    const id = `${name}_${phone}`;
+    await db.collection('rsvp').doc(id).set({
+      guest: rsvpState.side, guest_name: name, guest_phone: phone,
+      visited: rsvpState.attend, adult_count: adult, child_count: child,
+      timestamp: firebase.firestore.Timestamp.now()
+    });
+    msgEl.style.color = 'var(--wine)';
+    msgEl.textContent = '제출되었습니다. 감사합니다.';
+    document.getElementById('rsvp-form').reset();
+  }catch(err){
+    msgEl.textContent = '오류가 발생했습니다. (Firestore 규칙/설정을 확인해주세요)';
+    console.error(err);
+  }
+}
+
+// ---------- Guestbook ----------
+async function submitGuestbook(e){
+  e.preventDefault();
+  const status = document.getElementById('gb-status');
+  const name = document.getElementById('gb-name').value.trim();
+  const pw = document.getElementById('gb-pw').value.trim();
+  const msg = document.getElementById('gb-msg').value.trim();
+  if(!name || pw.length!==4 || !msg){
+    status.textContent = '이름, 4자리 비밀번호, 메시지를 모두 입력해주세요.';
+    return;
+  }
+  try{
+    await db.collection('guestbook').add({
+      name, password: pw, message: msg,
+      createdAt: firebase.firestore.Timestamp.now()
+    });
+    status.textContent = '축하 메시지가 전달되었습니다.';
+    document.getElementById('gb-form').reset();
+    loadGuestbook();
+  }catch(err){
+    status.textContent = '작업을 완료할 수 없습니다.';
+    console.error(err);
+  }
+}
+
+function loadGuestbook(){
+  db.collection('guestbook').orderBy('createdAt','desc').limit(20).get().then(snap=>{
+    const list = document.getElementById('gb-list');
+    list.innerHTML = '';
+    if(snap.empty){
+      list.innerHTML = '<p class="center" style="font-size:13px;color:#a89c8a;">아직 작성된 방명록이 없습니다.</p>';
+      return;
+    }
+    snap.forEach(doc=>{
+      const d = doc.data();
+      const item = document.createElement('div');
+      item.className = 'gb-item';
+      const date = d.createdAt ? d.createdAt.toDate().toLocaleDateString('ko-KR') : '';
+      item.innerHTML = `<div class="name">${escapeHtml(d.name||'')}</div><div class="msg">${escapeHtml(d.message||'')}</div><div class="date">${date}</div>`;
+      list.appendChild(item);
+    });
+  }).catch(err=>console.error(err));
+}
+function escapeHtml(str){
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+loadGuestbook();
+</script>
+</body>
+</html>
