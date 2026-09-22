@@ -57,8 +57,9 @@
   }
   h2{font-size:22px;font-weight:500;line-height:1.5;margin-bottom:28px;}
   p{font-size:14px;line-height:1.9;color:#5a5148;}
-  .center{text-align:center;}
-
+   .center{text-align:center;}
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity 0.7s ease, transform 0.7s ease;}
+  .reveal.show{opacity:1;transform:translateY(0);}
   /* ---------- Hero ---------- */
   #hero{
     height:100svh;min-height:640px;padding:70px 32px 60px;
@@ -652,6 +653,23 @@ async function submitGuestbook(e){
     status.textContent = '축하 메시지가 전달되었습니다.';
     document.getElementById('gb-form').reset();
     loadGuestbook();
+
+// ---------- 스크롤 리빌 애니메이션 ----------
+document.querySelectorAll('section').forEach(function(sec){
+  Array.from(sec.children).forEach(function(el, i){
+    el.classList.add('reveal');
+    el.style.transitionDelay = (i * 0.09) + 's';
+  });
+});
+const revealIO = new IntersectionObserver(function(entries){
+  entries.forEach(function(entry){
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
+      revealIO.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+document.querySelectorAll('.reveal').forEach(function(el){ revealIO.observe(el); });
   }catch(err){
     status.textContent = '작업을 완료할 수 없습니다.';
     console.error(err);
