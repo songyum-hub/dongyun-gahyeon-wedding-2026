@@ -26,17 +26,18 @@
 <style>
   :root{
     --ink:#2b2622;
-    --paper:#f7f3ec;
-    --paper-soft:#efe9dd;
-    --wine:#7a3b3e;
-    --wine-deep:#5c2c2e;
-    --gold:#b08d57;
-    --line:rgba(43,38,34,0.14);
-    --white:#fffdf9;
+    --paper:#faeef0;
+    --paper-soft:#f4e1e4;
+    --wine:#b06b78;
+    --wine-deep:#8f4d5a;
+    --gold:#c79a9f;
+    --line:rgba(43,38,34,0.12);
+    --white:#fffdfc;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html,body{
-    background:var(--paper);
+    background-color:var(--paper);
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/></svg>");
     color:var(--ink);
     font-family:'Noto Serif KR',serif;
     -webkit-font-smoothing:antialiased;
