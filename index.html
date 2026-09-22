@@ -117,26 +117,6 @@
   .dday{margin-top:28px;font-size:13px;color:#5a5148;font-family:'Gowun Batang',serif;}
   .dday b{color:var(--wine);font-weight:700;}
 
-  /* ---------- RSVP ---------- */
-  #rsvp form{display:flex;flex-direction:column;gap:14px;margin-top:24px;}
-  #rsvp label{font-size:12px;color:#8a8073;display:block;margin-bottom:6px;}
-  #rsvp input,#rsvp select{
-    width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:8px;
-    background:var(--white);font-family:'Noto Serif KR',serif;font-size:14px;color:var(--ink);
-  }
-  .seg{display:flex;gap:8px;}
-  .seg button{
-    flex:1;padding:11px 0;border:1px solid var(--line);border-radius:8px;background:var(--white);
-    font-size:13px;font-family:'Noto Serif KR',serif;color:#8a8073;cursor:pointer;
-  }
-  .seg button.on{background:var(--wine);color:var(--white);border-color:var(--wine);}
-  .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-  #rsvp .submit{
-    margin-top:8px;padding:14px 0;border:none;border-radius:8px;background:var(--ink);color:var(--white);
-    font-size:14px;font-family:'Noto Serif KR',serif;cursor:pointer;
-  }
-  .rsvp-msg{font-size:12px;color:var(--wine);margin-top:8px;min-height:16px;}
-
   /* ---------- Gallery ---------- */
   #gallery{background:var(--paper-soft);padding-left:0;padding-right:0;}
   #gallery .head{padding:0 32px;}
@@ -241,37 +221,6 @@
   <p class="dday center" id="dday-text"></p>
 </section>
 
-<section id="rsvp">
-  <p class="eyebrow center">RSVP</p>
-  <h2 class="center">참석 의사 전달하기</h2>
-  <p class="center">한 분 한 분을 소중히 모실 수 있도록<br>참석 의사를 전해주시면 감사하겠습니다.</p>
-  <form id="rsvp-form" onsubmit="submitRsvp(event)">
-    <div>
-      <label>어느 분의 하객이신가요?</label>
-      <div class="seg" id="rsvp-side">
-        <button type="button" data-val="신랑" onclick="pickSeg(this,'side')">신랑측</button>
-        <button type="button" data-val="신부" onclick="pickSeg(this,'side')">신부측</button>
-      </div>
-    </div>
-    <div>
-      <label>참석하실 수 있나요?</label>
-      <div class="seg" id="rsvp-attend">
-        <button type="button" data-val="참석" onclick="pickSeg(this,'attend')">참석할게요</button>
-        <button type="button" data-val="불참" onclick="pickSeg(this,'attend')">참석이 어려워요</button>
-      </div>
-    </div>
-    <div class="row2">
-      <div><label>성함</label><input type="text" id="rsvp-name" placeholder="참석자 본인 성함"></div>
-      <div><label>연락처 뒤 4자리</label><input type="text" id="rsvp-phone" maxlength="4" placeholder="0000"></div>
-    </div>
-    <div class="row2">
-      <div><label>성인 인원</label><input type="number" id="rsvp-adult" min="0" value="1"></div>
-      <div><label>미취학아동</label><input type="number" id="rsvp-child" min="0" value="0"></div>
-    </div>
-    <button type="submit" class="submit">체크 완료하기</button>
-    <p class="rsvp-msg" id="rsvp-msg"></p>
-  </form>
-</section>
 
 <section id="gallery">
   <div class="head">
