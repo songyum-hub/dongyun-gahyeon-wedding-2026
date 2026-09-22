@@ -60,21 +60,25 @@
 
   /* ---------- Hero ---------- */
   #hero{
-    height:100svh;min-height:640px;padding:0;
-    display:flex;flex-direction:column;justify-content:flex-end;align-items:center;
-    position:relative;overflow:hidden;color:var(--white);text-align:center;
+    height:100svh;min-height:640px;padding:70px 32px 60px;
+    display:flex;flex-direction:column;justify-content:flex-start;align-items:center;
+    position:relative;overflow:hidden;color:var(--ink);text-align:center;
+    background:var(--paper);
   }
-  #hero .bg{
-    position:absolute;inset:0;background:linear-gradient(160deg,#4a3630,#7a3b3e 55%,#3c2a26);
+  #hero .content{position:relative;z-index:2;width:100%;display:flex;flex-direction:column;align-items:center;}
+  #hero .eyebrow{color:#a89c8a;margin-bottom:38px;}
+  .frame{
+    padding:14px;background:var(--white);box-shadow:0 1px 4px rgba(43,38,34,0.14);
+    margin-bottom:40px;
   }
-  #hero .bg.has-image{background-size:cover;background-position:center;}
-  #hero .bg::after{content:"";position:absolute;inset:0;background:rgba(20,14,12,0.28);}
-  #hero .content{position:relative;z-index:2;padding:0 32px 64px;}
-  #hero .eyebrow{color:rgba(255,255,255,0.75);}
-  #hero h1{font-size:34px;font-weight:500;letter-spacing:0.02em;margin:8px 0 22px;}
-  #hero h1 .ring{font-size:16px;opacity:0.8;margin:0 8px;vertical-align:middle;}
-  #hero .date{font-size:16px;letter-spacing:0.08em;margin-bottom:6px;}
-  #hero .venue{font-size:13px;opacity:0.8;font-family:'Gowun Batang',serif;}
+  .frame-inner{
+    width:200px;height:264px;background:linear-gradient(160deg,#7a3b3e,#3c2a26);
+    background-size:cover;background-position:center;
+  }
+  #hero h1{font-size:24px;font-weight:400;letter-spacing:0.2em;margin:0 0 16px;color:var(--ink);}
+  #hero h1 .ring{font-size:13px;opacity:0.5;margin:0 12px;vertical-align:middle;}
+  #hero .date{font-size:13px;letter-spacing:0.06em;color:#5a5148;margin-bottom:4px;}
+  #hero .venue{font-size:12px;color:#a89c8a;font-family:'Gowun Batang',serif;}
 
   /* ---------- Greeting ---------- */
   #greeting p{white-space:pre-line;font-size:14px;line-height:2;}
@@ -196,9 +200,9 @@
 <body>
 
 <section id="hero">
-  <div class="bg" id="hero-bg"></div>
   <div class="content">
     <p class="eyebrow">WEDDING INVITATION</p>
+    <div class="frame"><div class="frame-inner" id="hero-photo"></div></div>
     <h1 id="hero-names"></h1>
     <p class="date" id="hero-date"></p>
     <p class="venue" id="hero-venue"></p>
@@ -429,9 +433,7 @@ document.getElementById('hero-names').innerHTML =
 document.getElementById('hero-date').textContent = CONFIG.wedding.dateText;
 document.getElementById('hero-venue').textContent = `${CONFIG.venue.name}, ${CONFIG.venue.hall}`;
 if(CONFIG.images.hero){
-  const bg = document.getElementById('hero-bg');
-  bg.classList.add('has-image');
-  bg.style.backgroundImage = `linear-gradient(rgba(20,14,12,0.35),rgba(20,14,12,0.45)), url(${CONFIG.images.hero})`;
+  document.getElementById('hero-photo').style.backgroundImage = `url(${CONFIG.images.hero})`;
 }
 
 document.getElementById('greeting-opening').textContent = CONFIG.greeting.opening || '소중한 분들을 초대합니다';
